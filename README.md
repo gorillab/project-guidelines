@@ -3,12 +3,12 @@
  | [日本語版](./README-ja.md)
  | [한국어](./README-ko.md)
 
-[<img src="./images/hive-red-logo.png" width="180" height="180">](http://wearehive.co.uk/)
+[<img src="./images/elsewhen-logo.png" width="180" height="180">](http://elsewhen.co/)
 
 
 # Project Guidelines &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 > While developing a new project is like rolling on a green field for you, maintaining it is a potential dark twisted nightmare for someone else.
-Here's a list of guidelines we've found, written and gathered that (we think) works really well with most JavaScript projects here at [hive](http://wearehive.co.uk).
+Here's a list of guidelines we've found, written and gathered that (we think) works really well with most JavaScript projects here at [elsewhen](http://elsewhen.co).
 If you want to share a best practice, or think one of these guidelines should be removed, [feel free to share it with us](http://makeapullrequest.com).
 - [Git](#git)
     - [Some Git rules](#some-git-rules)
@@ -61,7 +61,7 @@ There are a set of rules to keep in mind:
 * Delete local and remote feature branches after merging.
     
     _Why:_
-    > It will clutter up your list of branches with dead branches.It insures you only ever merge the branch back into (`master` or `develop`) once. Feature branches should only exist while the work is still in progress.
+    > It will clutter up your list of branches with dead branches. It ensures you only ever merge the branch back into (`master` or `develop`) once. Feature branches should only exist while the work is still in progress.
 
 * Before making a Pull Request, make sure your feature branch builds successfully and passes all tests (including code style checks).
     
@@ -76,11 +76,11 @@ There are a set of rules to keep in mind:
 * Protect your `develop` and `master` branch.
   
     _Why:_
-    > It protects your production-ready branches from receiving unexpected and irreversible changes. read more... [Github](https://help.github.com/articles/about-protected-branches/) and [Bitbucket](https://confluence.atlassian.com/bitbucketserver/using-branch-permissions-776639807.html)
+    > It protects your production-ready branches from receiving unexpected and irreversible changes. read more... [Github](https://help.github.com/articles/about-protected-branches/), [Bitbucket](https://confluence.atlassian.com/bitbucketserver/using-branch-permissions-776639807.html) and [GitLab](https://docs.gitlab.com/ee/user/project/protected_branches.html)
 
 <a name="git-workflow"></a>
 ### 1.2 Git workflow
-Because of most of the reasons above, we use [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) with [Interactive Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing) and some elements of [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow) (naming and having a develop branch). The main steps are as follow:
+Because of most of the reasons above, we use [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) with [Interactive Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing) and some elements of [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow) (naming and having a develop branch). The main steps are as follows:
 
 * For a new project, initialize a git repository in the project directory. __For subsequent features/changes this step should be ignored__.
    ```sh
@@ -107,7 +107,7 @@ Because of most of the reasons above, we use [Feature-branch-workflow](https://w
     ```
     
     _Why:_
-    > This will give you a chance to deal with conflicts on your machine while rebasing(later) rather than creating a Pull Request that contains conflicts.
+    > This will give you a chance to deal with conflicts on your machine while rebasing (later) rather than creating a Pull Request that contains conflicts.
     
 * Update your feature branch with latest changes from develop by interactive rebase.
     ```sh
@@ -118,7 +118,7 @@ Because of most of the reasons above, we use [Feature-branch-workflow](https://w
     _Why:_
     > You can use --autosquash to squash all your commits to a single commit. Nobody wants many commits for a single feature in develop branch. [read more...](https://robots.thoughtbot.com/autosquashing-git-commits)
     
-* If you don’t have conflict skip this step. If you have conflicts, [resolve them](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/)  and continue rebase.
+* If you don’t have conflicts, skip this step. If you have conflicts, [resolve them](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/)  and continue rebase.
     ```sh
     git add <file1> <file2> ...
     git rebase --continue
@@ -141,7 +141,7 @@ Because of most of the reasons above, we use [Feature-branch-workflow](https://w
   ```
   to remove all branches which are no longer on remote
   ```sh
-  git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done
+  git fetch -p && for branch in `git branch -vv --no-color | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done
   ```
 
 <a name="writing-good-commit-messages"></a>
@@ -384,15 +384,6 @@ Having a good guideline for creating commits and sticking to it makes working wi
     _Why:_
     >Name it what you like, `dist` is also cool. But make sure that keep it consistent with your team. What gets in there is most likely generated  (bundled, compiled, transpiled) or moved there. What you can generate, your teammates should be able to generate too, so there is no point committing them into your remote repository. Unless you specifically want to. 
 
-* Use `PascalCase' 'camelCase` for filenames and directory names. Use  `PascalCase`  only for Components.
-
-* `CheckBox/index.js` should have the `CheckBox` component, as could `CheckBox.js`, but **not** `CheckBox/CheckBox.js` or `checkbox/CheckBox.js` which are redundant.
-
-* Ideally the directory name should match the name of the default export of `index.js`.
-
-    _Why:_
-    > Then you can expect what component or module you will receive by simply just importing its parent folder.   
-
 <a name="code-style"></a>
 ## 7. Code style
 
@@ -423,7 +414,7 @@ Having a good guideline for creating commits and sticking to it makes working wi
     _Why:_
     > Flow introduces few syntaxes that also need to follow certain code style and be checked.
 
-* Use `.eslintignore` to exclude file or folders from code style check.
+* Use `.eslintignore` to exclude files or folders from code style checks.
 
     _Why:_
     > You don't have to pollute your code with `eslint-disable` comments whenever you need to exclude a couple of files from style checking.
@@ -488,7 +479,7 @@ Having a good guideline for creating commits and sticking to it makes working wi
 * Avoid client-side console logs in production
 
     _Why:_
-    > Even though your build process can(should) get rid of them, but make sure your code style check gives your warning about console logs.
+    > Even though your build process can (should) get rid of them, make sure that your code style checker warns you about leftover console logs.
 
 * Produce readable production logging. Ideally use logging libraries to be used in production mode (such as [winston](https://github.com/winstonjs/winston) or
 [node-bunyan](https://github.com/trentm/node-bunyan)).
@@ -652,13 +643,15 @@ _Why:_
 
     _Note: Keep security exception messages as generic as possible. For instance, Instead of saying ‘incorrect password’, you can reply back saying ‘invalid username or password’ so that we don’t unknowingly inform user that username was indeed correct and only the password was incorrect._
 
-* Use only these 8 status codes to send with you response to describe whether **everything worked**,
+* Use these status codes to send with your response to describe whether **everything worked**,
 The **client app did something wrong** or The **API did something wrong**.
     
     _Which ones:_
     > `200 OK` response represents success for `GET`, `PUT` or `POST` requests.
 
     > `201 Created` for when a new instance is created. Creating a new instance, using `POST` method returns `201` status code.
+
+    > `204 No Content` response represents success but there is no content to be sent in the response. Use it when `DELETE` operation succeeds.
 
     > `304 Not Modified` response is to minimize information transfer when the recipient already has cached representations.
 
@@ -679,7 +672,7 @@ The **client app did something wrong** or The **API did something wrong**.
 * Provide total numbers of resources in your response.
 * Accept `limit` and `offset` parameters.
 
-* The amount of data the resource exposes should also be taken into account. The API consumer doesn't always need the full representation of a resource.Use a fields query parameter that takes a comma separated list of fields to include:
+* The amount of data the resource exposes should also be taken into account. The API consumer doesn't always need the full representation of a resource. Use a fields query parameter that takes a comma separated list of fields to include:
     ```
     GET /student?fields=id,name,age,class
     ```
@@ -709,7 +702,7 @@ These are some basic security best practices:
 
 * Your API should convert the received data to their canonical form or reject them. Return 400 Bad Request with details about any errors from bad or missing data.
 
-* All the data exchanged with the ReST API must be validated by the API.
+* All the data exchanged with the REST API must be validated by the API.
 
 * Serialize your JSON.
 
